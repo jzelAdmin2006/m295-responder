@@ -51,5 +51,5 @@ Route::prefix("/responder")->group(function () {
     });
     Route::get("/multiply/{number1}/{number2}", function ($number1, $number2) {
         return $number1 * $number2;
-    });
+    })->whereNumber('number1')->whereNumber('number2');
 });
