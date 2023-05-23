@@ -22,10 +22,34 @@ Route::prefix("/responder")->group(function () {
     Route::get("/hi", function () {
         return "Hallo Welt";
     });
-    Route::get("/b", function () {
-        return "Aufgabe 2b";
+    Route::get("/number", function () {
+        return rand(1, 10);
     });
-    Route::get("/c", function () {
-        return "Aufgabe 2c";
+    Route::get("/www", function () {
+        return redirect("https://www.ict-bz.ch");
+    });
+    Route::get("/favi", function () {
+        $pathToFile = public_path('favicon.ico');
+        $headers = ['Content-Type: image/x-icon'];
+        return response()->download($pathToFile, 'favicon.ico', $headers);
+    });
+    Route::get("/hi/{name}", function ($name) {
+        return "Hi " . $name;
+    });
+    Route::get("/weather", function () {
+        return [
+            'city' => 'Luzern',
+            'temperature' => 20,
+            'wind' => 10,
+            'rain' => 0,
+        ];
+    });
+    Route::get("/error", function () {
+        return response()->json([
+            'error' => 'Unauthorized'
+        ], 401);
+    });
+    Route::get("/multiply/{number1}/{number2}", function ($number1, $number2) {
+        return $number1 * $number2;
     });
 });
