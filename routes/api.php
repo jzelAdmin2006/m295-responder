@@ -17,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix("/responder")->group(function () {
+    Route::get("/hi", function () {
+        return "Hallo Welt";
+    });
+    Route::get("/b", function () {
+        return "Aufgabe 2b";
+    });
+    Route::get("/c", function () {
+        return "Aufgabe 2c";
+    });
+});
